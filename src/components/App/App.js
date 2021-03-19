@@ -4,16 +4,19 @@ import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
 import styles from './App.module.css';
 
-const todoItem = 'Написать новое приложение';
-
-const App = () => {
-	const items = [
+class App extends React.Component {
+	render() {
+		const items = [
 		{
 			value: 'Написать новое приложение',
 			isDone: true
 		},
 		{
 			value: 'Написать props-ы',
+			isDone: false
+		},
+		{
+			value: 'стилизовать',
 			isDone: false
 		},
 		{
@@ -27,8 +30,9 @@ const App = () => {
 			<h1 className={styles.title}>Важные дела:</h1>
 			<InputItem />
 			<ItemList items={items} />
-			<Footer count={3} />
+			<Footer count={items.length} />
 		</div>);
-}
+	}
+};
 
 export default App;
