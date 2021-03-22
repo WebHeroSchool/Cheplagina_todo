@@ -24,14 +24,16 @@ class App extends React.Component {
 						isDone: true
 					}
 				]
-		};
+	};
+
+	onClickDone = isDone => console.log(isDone);
 
 	render() {
 		return (
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>Важные дела:</h1>
 				<InputItem />
-				<ItemList items={this.state.items} />
+				<ItemList items={this.state.items} onClickDone={this.onClickDone} />
 				<Footer count={this.state.items.length} />
 			</div>);
 		}
