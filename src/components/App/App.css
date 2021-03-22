@@ -1,0 +1,12 @@
+.wrap {
+	margin: auto;
+	width: 300px;
+}
+
+.wrap__title{
+	font-family: Helvetica;
+}
+
+.wrap__item{
+	font-style: italic;
+}
