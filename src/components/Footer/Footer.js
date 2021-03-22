@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Footer = ({ count }) => (<div className={styles.footer}>
-	<p className={styles.unfinished}>Осталось выполнить дел: {count}</p>
+const Footer = ({ count, onClickFooter }) => (<div className={styles.footer}>
+	<p className={styles.unfinished} onClick={onClickFooter}>Осталось выполнить дел: {count}</p>
 	
 	<div className={styles.buttons}><ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
         <Button>Все</Button>
