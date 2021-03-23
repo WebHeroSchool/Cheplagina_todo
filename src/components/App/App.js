@@ -24,10 +24,11 @@ class App extends React.Component {
 					},
 					{
 						value: 'Сделать все дела',
-						isDone: true
+						isDone: true,
+						id:4
 					}
 				],
-				count: 6
+				count: 2
 	};
 
 	onClickDone = id => {
@@ -37,8 +38,23 @@ class App extends React.Component {
 				newItem.isDone = !item.isDone;
 			}
 			return newItem
+			console.log(newItem)
 		});
-		this.setState({ items: newItemList })
+		this.setState({ items: newItemList });
+	};
+
+	onClickDelete = id => {
+		const newItemList = this.state.items.filter(item =>{
+			return item.id !== id; 
+		} );
+		this.setState({items:newItemList});
+	};
+
+	onClickDeleteDone = id => {
+		const newItemList = this.state.items.filter(item =>{
+			return item.isDone !== true; 
+		} );
+		this.setState({items:newItemList});
 	};
 
 	render() {
@@ -46,8 +62,8 @@ class App extends React.Component {
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>Важные дела:</h1>
 				<InputItem />
-				<ItemList items={this.state.items} onClickDone={this.onClickDone} />
-				<Footer count={this.state.count} />
+				<ItemList items={this.state.items} onClickDone={this.onClickDone}  onClickDelete={this.onClickDelete} />
+				<Footer count={this.state.count} onClickDeleteDone={this.onClickDeleteDone} />
 			</div>);
 		}
 };

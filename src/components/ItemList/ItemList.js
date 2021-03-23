@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 import styles from './ItemList.module.css';
 
-const ItemList = ({ items, onClickDone }) => (<ul className={styles.list}>
+const ItemList = ({ items, onClickDone, onClickDelete }) => (<ul className={styles.list}>
 		{items.map(item =>
 		 <li className={styles.item} key={item.value}>
 			<Checkbox
@@ -27,7 +27,8 @@ const ItemList = ({ items, onClickDone }) => (<ul className={styles.list}>
 				/>
 			</div>
 			<div>
-				<IconButton aria-label='delete'>
+				<IconButton aria-label='delete'
+				 onClick={() => onClickDelete(item.id)}>
 	          <DeleteIcon fontSize='small' />
 	        	</IconButton>
         </div>
