@@ -5,3 +5,14 @@
 .done{
 	color: #c4c4c4;
 }
+
+.item{
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.delete{
+	margin-left: auto;
+}

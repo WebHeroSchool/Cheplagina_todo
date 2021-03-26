@@ -34,7 +34,7 @@ class App extends React.Component {
 				<h1 className={styles.title}>Важные дела:</h1>
 				<InputItem />
 				<ItemList items={this.state.items} onClickDone={this.onClickDone} />
-				<Footer count={this.state.items.length} />
+				<Footer count={4} />
 			</div>);
 		}
 };
