@@ -1,10 +1,18 @@
 .item{
-	font-style: italic;
-	color: #4B0082;
-	font-weight: 700;
+	font-size: 18px;
 }
 
 .done{
 	color: #c4c4c4;
-	font-weight: 400;
+}
+
+.item{
+	margin-bottom: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.delete{
+	margin-left: auto;
 }
