@@ -38,22 +38,28 @@ class App extends React.Component {
 				newItem.isDone = !item.isDone;
 			}
 			return newItem
-			console.log(newItem)
 		});
 		this.setState({ items: newItemList });
 	};
 
-	onClickDelete = id => this.setState(state => ({ items: state.items.filter(item => item.id !==id)}));
-
+	/*onClickDelete = id => this.setState(state => ({ 
+		items: state.items.filter(item => item.id !==id)
+	}));
+		*/
+	onClickDelete = id => {
+			const newItemList = this.state.items.filter(item =>{
+				return item.id !== id; 
+			});
+			this.setState({items:newItemList});
+		};
 
 	onClickAdd = value => this.setState(state => ({
 		items: [
 			...state.items,
 			{
-				value,
+				value: value.toLowerCase(),
 				isDone: false,
 				id: state.count + 1
-
 			}
 		],
 		count: state.count + 1
@@ -71,11 +77,12 @@ class App extends React.Component {
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>Важные дела:</h1>
 				<InputItem onClickAdd={this.onClickAdd} />
-				<ItemList items={this.state.items} 
-				onClickDone={this.onClickDone}  
-				onClickDelete={this.onClickDelete} />
-				<Footer count={this.state.count} 
-				onClickDeleteDone={this.onClickDeleteDone}
+				<ItemList 
+					items={this.state.items} 
+					onClickDone={this.onClickDone}  
+					onClickDelete={this.onClickDelete} />
+				<Footer count={this.state.items.length} 
+					onClickDeleteDone={this.onClickDeleteDone}
 				/>
 			</div>);
 		}

@@ -16,7 +16,7 @@ class InputItem extends React.Component {
 	}
 
 	render() {
-		const { onClickAdd } = this.props;
+		//const { onClickAdd } = this.props;
 
 		return (
 			<div>
@@ -25,8 +25,8 @@ class InputItem extends React.Component {
 		          id="margin-dense"
 		          margin="dense"
 		          fullWidth
-		          value={this.state.inputValue}
-		          onChange={event => this.setState({inputValue: event.target.value})}
+		          value={this.state.inputValue.toUpperCase()}
+		          onChange={event => this.setState({inputValue: event.target.value.toUpperCase()})}
 		      />
 		      <Button 
 			      variant="contained" 

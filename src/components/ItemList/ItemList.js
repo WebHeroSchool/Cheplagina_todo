@@ -1,37 +1,20 @@
 import React from 'react';
 import Item from '../Item/Item';
-import Checkbox from '@material-ui/core/Checkbox';
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
+
 import styles from './ItemList.module.css';
 
-const ItemList = ({ items, onClickDone, onClickDelete }) => (<ul className={styles.list}>
+
+const ItemList = ({ items, onClickDone, onClickDelete }) => (
+	<ul className={styles.list}>
 		{items.map(item =>
 		 <li className={styles.item} key={item.value}>
-			<Checkbox
-				checked={item.isDone}
-		      defaultChecked
-		      //value='checkedG'
-		      color='primary'
-		      inputProps={{ 
-		        	'aria-label': 'secondary checkbox',
-		      }}
-        		onClick={() => onClickDone(item.id)}
-      	/>
-			<div className={styles.item_text}>
-				<Item 
-					value={item.value} 
-					isDone={item.isDone} 
-					id={item.id}
-					onClickDone={onClickDone}
-				/>
-			</div>
-			<div>
-				<IconButton aria-label='delete'
-				 onClick={() => onClickDelete(item.id)}>
-	          <DeleteIcon fontSize='small' />
-	        	</IconButton>
-        </div>
+			<Item 
+				value={item.value} 
+				isDone={item.isDone} 
+				id={item.id}
+				onClickDone={onClickDone}
+				onClickDelete={onClickDelete} 
+			/>
 		</li>)}
 	</ul>);
 
