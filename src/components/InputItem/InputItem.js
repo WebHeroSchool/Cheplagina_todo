@@ -1,33 +1,39 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import styles from './InputItem.module.css';
 
 class InputItem extends React.Component {
 	state = {
-		inputValue: ''
+		inputValue: '',
+		error: undefined
 	};
 
 	onButtonClick = () => {
-		this.setState({
+		if (this.state.inputValue !== ''){
+		this.props.onClickAdd(this.state.inputValue);
+		} 
+	
+	this.setState({
 			inputValue: ''
 		});
-
-		this.props.onClickAdd(this.state.inputValue);
-	}
+		 
+}
 
 	render() {
+
 		//const { onClickAdd } = this.props;
 
 		return (
 			<div>
-				<TextField
+			   <TextField
 		          label="Добавить задание"
 		          id="margin-dense"
-		          margin="dense"
 		          fullWidth
+		          margin="dense"
 		          value={this.state.inputValue.toUpperCase()}
 		          onChange={event => this.setState({inputValue: event.target.value.toUpperCase()})}
-		      />
+		      	/>
 		      <Button 
 			      variant="contained" 
 			      color="primary" 
