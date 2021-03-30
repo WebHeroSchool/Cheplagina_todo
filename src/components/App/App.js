@@ -9,32 +9,77 @@ class App extends React.Component {
 			items: [
 					{
 						value: 'Написать новое приложение',
-						isDone: true
+						isDone: true,
+						id:1
 					},
 					{
 						value: 'Написать props-ы',
-						isDone: false
+						isDone: false,
+						id:2
 					},
 					{
 						value: 'стилизовать',
-						isDone: false
+						isDone: false,
+						id:3
 					},
 					{
 						value: 'Сделать все дела',
-						isDone: true
+						isDone: true,
+						id:4
 					}
-				]
+				],
+				count: 4
 	};
 
-	onClickDone = isDone => console.log(isDone);
+	onClickDone = id => {
+		const newItemList = this.state.items.map(item =>{
+			const newItem = { ...item};
+			if(item.id ===id) {
+				newItem.isDone = !item.isDone;
+			}
+			return newItem
+		});
+		this.setState({ items: newItemList });
+	};
+
+	onClickDelete = id => {
+			const newItemList = this.state.items.filter(item =>{
+				return item.id !== id; 
+			});
+			this.setState({items:newItemList});
+		};
+
+	onClickAdd = value => this.setState(state => ({
+		items: [
+			...state.items,
+			{
+				value: value.toLowerCase(),
+				isDone: false,
+				id: state.count + 1
+			}
+		],
+		count: state.count + 1
+	}));
+
+	onClickDeleteDone = id => {
+		const newItemList = this.state.items.filter(item =>{
+			return item.isDone !== true; 
+		} );
+		this.setState({items:newItemList});
+	};
 
 	render() {
 		return (
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>Важные дела:</h1>
-				<InputItem />
-				<ItemList items={this.state.items} onClickDone={this.onClickDone} />
-				<Footer count={4} />
+				<InputItem onClickAdd={this.onClickAdd} />
+				<ItemList 
+					items={this.state.items} 
+					onClickDone={this.onClickDone}  
+					onClickDelete={this.onClickDelete} />
+				<Footer count={this.state.items.length} 
+					onClickDeleteDone={this.onClickDeleteDone}
+				/>
 			</div>);
 		}
 };
