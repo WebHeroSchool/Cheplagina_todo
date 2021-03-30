@@ -18,6 +18,7 @@ const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => (
 			inputProps={{ 
 				'aria-label': 'secondary checkbox',
 			}}
+
 	      onClick={() => onClickDone(id)}
 	   />
 	   {value}
@@ -31,4 +32,5 @@ const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => (
 	</span>);
 
 export default Item;
+
 
