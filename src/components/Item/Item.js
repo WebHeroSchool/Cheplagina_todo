@@ -6,31 +6,44 @@ import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 
-const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => (
-	<span className={
-		classnames({
-			[styles.item]: true,
-			[styles.done]: isDone
-			})
-		}>
-		<Checkbox
-			checked={isDone}
-			color='primary'
-			inputProps={{ 
-				'aria-label': 'secondary checkbox',
-			}}
+class Item extends React.Component {
+	componentDidMount() {
+		console.log('componentDidMount');
+	}
+	componentDidUpdate() {
+		console.log('componentDidUpdate');
+	}
+	componentWillUnmount() {
+		console.log('componentWillUnmount');
+	}
 
-	      onClick={() => onClickDone(id)}
-	   />
-	   {value}
-		<div className={styles.delete}>	   
-			<IconButton aria-label='delete'
-			>
-		   <DeleteIcon fontSize='small' 
-		   onClick={() => onClickDelete(id)}  />
-		   </IconButton>
-	   </div>
-	</span>);
+	render() {
+	const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+
+		return (<span className={
+			classnames({
+				[styles.item]: true,
+				[styles.done]: isDone
+				})
+			}>
+			<Checkbox
+				checked={isDone}
+				color='primary'
+				inputProps={{ 
+					'aria-label': 'secondary checkbox',
+				}}
+		      onClick={() => onClickDone(id)}
+		   />
+		   {value}
+			<div className={styles.delete}>	   
+				<IconButton aria-label='delete'
+				>
+			   <DeleteIcon fontSize='small' 
+			   onClick={() => onClickDelete(id)}  />
+			   </IconButton>
+		   </div>
+		</span>);
+	}}
 
 	Item.defaultProps = {
 	  value: 'нет задачи'
