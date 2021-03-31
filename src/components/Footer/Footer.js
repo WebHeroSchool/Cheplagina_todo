@@ -30,4 +30,8 @@ const Footer = ({ count, id, onClickDeleteDone }) => (
      </div>
   </div>);
 
+Footer.defaultProps = {
+  count: 0
+};
+
 export default Footer;
