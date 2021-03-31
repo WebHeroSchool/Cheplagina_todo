@@ -22,11 +22,11 @@ const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => (
 	      onClick={() => onClickDone(id)}
 	   />
 	   {value}
-		<div className={styles.delete}>	   
-			<IconButton aria-label='delete'
-			>
+		<div className={styles.delete} 
+			onClick={() => onClickDelete(id)}>	   
+			<IconButton aria-label='delete'>
 		   <DeleteIcon fontSize='small' 
-		   onClick={() => onClickDelete(id)}  />
+		     />
 		   </IconButton>
 	   </div>
 	</span>);
