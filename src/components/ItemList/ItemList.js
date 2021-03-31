@@ -24,7 +24,7 @@ ItemList.defaultProps = {
 	}]
 }
 
-ItemList.defaultProps = {
+ItemList.propTypes = {
 	items: PropTypes.array.isRequired
 };
 
