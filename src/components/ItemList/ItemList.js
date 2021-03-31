@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Item from '../Item/Item';
 import styles from './ItemList.module.css';
 
@@ -22,5 +23,9 @@ ItemList.defaultProps = {
 	  isDone: false
 	}]
 }
+
+ItemList.propTypes = {
+	items: PropTypes.array.isRequired
+};
 
 export default ItemList;

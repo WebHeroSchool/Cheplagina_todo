@@ -3,18 +3,5 @@
     display: flex;
     height: 36px;
 }
-.fieldError {
-    border: 5px solid #e09f9f;
-    border-right: none; 
-}
 
-.error {
-    position: absolute;
-    padding: 1px 6px;
-    height: 18px;
-    background-color: #fce6e6;
-    font-size: 14px;
-    color: #df9696;
-    border-radius: 4px;
-}
 
