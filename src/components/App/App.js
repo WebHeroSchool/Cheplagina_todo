@@ -33,10 +33,10 @@ const App = () => {
 
 	const [items, setItems] = useState (initialState.items);
 	const [count, setCount] = useState (initialState.count);
-
-	useEffect(() => {console.log('mount');}, [items])
-
-
+	
+	useEffect(() => {console.log('mount');}, []);
+	useEffect(() => {console.log('update');});
+	
 	const onClickDone = id => {
 		const newItemList = items.map(item =>{
 			const newItem = { ...item};
@@ -45,6 +45,7 @@ const App = () => {
 			}
 			return newItem
 		});
+
 		setItems(newItemList);
 	};
 
@@ -66,7 +67,6 @@ const App = () => {
 				}]);
 		setCount(count + 1) 
 	}
-
 
 	const onClickDeleteDone = id => {
 		const newItemList = items.filter(item =>{

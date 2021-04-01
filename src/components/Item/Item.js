@@ -6,8 +6,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 
-const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => (
-	<span className={
+class Item extends React.Component {
+	
+	render() {
+	const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+
+		return (	<span className={
 		classnames({
 			[styles.item]: true,
 			[styles.done]: isDone
@@ -30,6 +34,7 @@ const Item = ({ value, isDone, onClickDone, id, onClickDelete }) => (
 		   </IconButton>
 	   </div>
 	</span>);
+}}
 
 	Item.defaultProps = {
 	  value: 'нет задачи'
