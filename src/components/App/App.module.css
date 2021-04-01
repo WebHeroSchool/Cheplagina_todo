@@ -1,10 +1,19 @@
 .wrap {
 	margin: auto;
-	width: 400px;
+	width: 600px;
+	display: flex;
 }
 
-.title{
-	margin-top: 50px;
-	font-family: Helvetica;
-	font-weight: 700;
+.sidebar{
+	width: 100px;
+}
+
+.content {
+	margin: auto;
+	padding-left: 10px;
+	width: 500px;
+}
+
+.link{
+	text-decoration: none;
 }
