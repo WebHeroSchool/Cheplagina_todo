@@ -1,3 +1,29 @@
-.content{
-	display: none;
+.text {
+	font-size: 20px;
+	text-align: center;
+}
+
+.img{
+	max-width: 100%;
+}
+
+.list {
+	list-style: none;
+	padding: 0;
+}
+
+.item{
+	margin-bottom: 10px;
+	text-align: center;
+	width: 50%;
+}
+
+.repos{
+	text-decoration: none;
+	font-size: 18px;
+	display: block;
+	background-color:  #87CEEB;
+	padding: 10px;
+	border-radius: 0 20px 20px 0;
+	color: #000;
 }
