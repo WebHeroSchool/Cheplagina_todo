@@ -7,7 +7,17 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 
 class Item extends React.Component {
-	
+
+	componentDidMount() {
+		this.timerID = setInterval(() => console.log('interval'), 1000);
+	}
+	componentDidUpdate() {
+		console.log('componentDidUpdate');
+	}
+	componentWillUnmount() {
+		clearInterval(this.timerID);
+	}
+
 	render() {
 	const { value, isDone, onClickDone, id, onClickDelete, onDoubleClick } = this.props;
 
@@ -39,7 +49,7 @@ class Item extends React.Component {
 	</span>);
 }}
 
-	Item.defaultProps = {
+Item.defaultProps = {
 	  value: 'нет задачи'
 	};
 
@@ -48,4 +58,5 @@ class Item extends React.Component {
 	};
 
 export default Item;
+
 
