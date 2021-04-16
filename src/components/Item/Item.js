@@ -9,7 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 class Item extends React.Component {
 	
 	render() {
-	const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+	const { value, isDone, onClickDone, id, onClickDelete, onDoubleClick } = this.props;
 
 		return (	<span className={
 		classnames({
@@ -25,7 +25,10 @@ class Item extends React.Component {
 			}}
 	      onClick={() => onClickDone(id)}
 	   />
-	   {value}
+	   <p 
+	   	onDoubleClick={() => onClickDone(id)}>
+	   		{value}
+	    </p>
 		<div className={styles.delete} 
 			onClick={() => onClickDelete(id)}>	   
 			<IconButton aria-label='delete'>

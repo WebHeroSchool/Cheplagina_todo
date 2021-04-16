@@ -1,0 +1,57 @@
+.contacts{
+	padding: 0;
+}
+
+.email_img{
+	margin-right: 3%;
+}
+
+.email{
+	display: flex;
+	vertical-align: top;  
+	color: #000;
+}
+
+.phone_img{
+	margin-right: 3%;
+}
+
+.phone{
+	vertical-align: top; 
+	color: #000; 
+}
+
+.email:hover,
+.phone:hover{
+	color: #696969;
+	text-decoration: none;
+}
+
+.social{
+	margin: 1%;
+}
+
+@media(max-width: 549px){
+	.email,
+	.phone{
+		font-size: 12px;
+	}
+}
+
+@media(max-width: 342px){
+	.email,
+	.phone{
+		font-size: 8px;
+	}
+
+	.social_img{
+	width: 16px;
+	height: 16px;
+	}
+
+	.email_img,
+	.phone_img{
+	width: 14px;
+	height: 14px;
+	}
+}
