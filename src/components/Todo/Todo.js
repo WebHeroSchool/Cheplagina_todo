@@ -8,10 +8,11 @@ import styles from './Todo.module.css';
 
 const Todo = () => {
 		const initialState = {
-			items: [
+			items: JSON.parse(localStorage.getItem('items')) ||
+			[
 					{
 						value: 'Написать новое приложение',
-						isDone: true,
+						isDone: false,
 						id:1
 					},
 					{
@@ -24,20 +25,19 @@ const Todo = () => {
 						isDone: false,
 						id:3
 					},
-					{
-						value: 'Сделать все дела',
-						isDone: true,
-						id:4
-					}
 				],
-				count: 4
+				count: 3,
+				filter: 'all'
 	};
 
 	const [items, setItems] = useState (initialState.items);
 	const [count, setCount] = useState (initialState.count);
+	const [filter, setFilter] = useState ('allTask');
+	let itemsFilter;
 	
 	useEffect(() => {console.log('mount');}, []);
 	useEffect(() => {console.log('update');});
+	useEffect(() => {localStorage.setItem('items', JSON.stringify(items));})
 	
 	const onClickDone = id => {
 		const newItemList = items.map(item =>{
@@ -63,11 +63,11 @@ const Todo = () => {
 		setItems(
 			[...items,
 				{
-					value: value.toLowerCase(),
+					value: value,
 					isDone: false,
 					id: count + 1
 				}]);
-		setCount(count + 1) 
+		setCount(count + 1)
 	}
 
 	const onClickDeleteDone = id => {
@@ -77,15 +77,35 @@ const Todo = () => {
 		setItems(newItemList);
 	};
 
+	const activeTask = (items.filter((item) => item.isDone === false)).length;
+	const doneTask = (items.filter((item) => item.isDone === true)).length;
+
+	const onClickFilter = filtered => setFilter(filtered);
+
+	switch (filter) {
+		case 'done':
+			itemsFilter = items.filter(item => item.isDone);
+			break;
+		case 'active':
+			itemsFilter = items.filter(item => !item.isDone);
+			break;
+		default:
+			itemsFilter = items;		
+	}
+
 		return (
 			<CardContent>
 				<h1 className={styles.title}>Важные дела:</h1>
-				<InputItem onClickAdd={onClickAdd} />
+				<InputItem items={items} onClickAdd={onClickAdd} />
 				<ItemList 
-					items={items} 
+					items={itemsFilter} 
 					onClickDone={onClickDone}  
 					onClickDelete={onClickDelete} />
-					<Footer count={items.length}
+				<Footer filtered={filter}
+					onClickFilter={onClickFilter} 
+					count={count}
+					activeTask = {activeTask}
+					doneTask = {doneTask}
 					onClickDeleteDone={onClickDeleteDone}
 				/>
 			</CardContent>);

@@ -19,34 +19,37 @@ class Item extends React.Component {
 	}
 
 	render() {
-	const { value, isDone, onClickDone, id, onClickDelete } = this.props;
+	const { value, isDone, onClickDone, id, onClickDelete, onDoubleClick } = this.props;
 
-		return (<span className={
-			classnames({
-				[styles.item]: true,
-				[styles.done]: isDone
-				})
-			}>
-			<Checkbox
-				checked={isDone}
-				color='primary'
-				inputProps={{ 
-					'aria-label': 'secondary checkbox',
-				}}
-		      onClick={() => onClickDone(id)}
-		   />
-		   {value}
-			<div className={styles.delete}>	   
-				<IconButton aria-label='delete'
-				>
-			   <DeleteIcon fontSize='small' 
-			   onClick={() => onClickDelete(id)}  />
-			   </IconButton>
-		   </div>
-		</span>);
-	}}
+		return (	<span className={
+		classnames({
+			[styles.item]: true,
+			[styles.done]: isDone
+			})
+		}>
+		<Checkbox
+			checked={isDone}
+			color='primary'
+			inputProps={{ 
+				'aria-label': 'secondary checkbox',
+			}}
+	      onClick={() => onClickDone(id)}
+	   />
+	   <p 
+	   	onDoubleClick={() => onClickDone(id)}>
+	   		{value}
+	    </p>
+		<div className={styles.delete} 
+			onClick={() => onClickDelete(id)}>	   
+			<IconButton aria-label='delete'>
+		   <DeleteIcon fontSize='small' 
+		     />
+		   </IconButton>
+	   </div>
+	</span>);
+}}
 
-	Item.defaultProps = {
+Item.defaultProps = {
 	  value: 'нет задачи'
 	};
 

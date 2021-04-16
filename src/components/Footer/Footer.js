@@ -6,18 +6,28 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const Footer = ({ count, id, onClickDeleteDone }) => (
+const Footer = ({ count, id, onClickDeleteDone, onClickFilter, activeTask, doneTask }) => (
   <div className={styles.footer}>
-  	<p className={styles.unfinished}>Осталось выполнить дел: {count}</p>
+  	<p className={styles.unfinished}  onClick={() => onClickFilter('active')}>Осталось выполнить дел: {activeTask}</p>
   	
   	<div className={styles.buttons}>
         <ButtonGroup 
           variant="contained" 
           color="primary" 
           aria-label="contained primary button group">
-            <Button>Все</Button>
-            <Button>Активные</Button>
-            <Button>Выполненные</Button>
+
+            <Button onClick={() => onClickFilter('allTask')}>
+              Все {activeTask + doneTask}
+            </Button>
+
+            <Button  onClick={() => onClickFilter('active')}>
+              Активные  {activeTask}
+            </Button>
+
+            <Button  onClick={() => onClickFilter('done')}>
+              Выполненные {doneTask}
+            </Button>
+
         </ButtonGroup>
      </div>
      <div className={styles.delete} onClick={() => onClickDeleteDone(id)}>
