@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import ItemList from '../ItemList/ItemList';
 import InputItem from '../InputItem/InputItem';
 import Footer from '../Footer/Footer';
 import styles from './App.module.css';
 
-class App extends React.Component {
-		state = {
+const App = () => {
+		const initialState = {
 			items: [
 					{
 						value: 'Написать новое приложение',
@@ -31,57 +31,62 @@ class App extends React.Component {
 				count: 4
 	};
 
-	onClickDone = id => {
-		const newItemList = this.state.items.map(item =>{
+	const [items, setItems] = useState (initialState.items);
+	const [count, setCount] = useState (initialState.count);
+	
+	useEffect(() => {console.log('mount');}, []);
+	useEffect(() => {console.log('update');});
+	
+	const onClickDone = id => {
+		const newItemList = items.map(item =>{
 			const newItem = { ...item};
 			if(item.id ===id) {
 				newItem.isDone = !item.isDone;
 			}
 			return newItem
 		});
-		this.setState({ items: newItemList });
+
+		setItems(newItemList);
 	};
 
-	onClickDelete = id => {
-			const newItemList = this.state.items.filter(item =>{
+	const onClickDelete = id => {
+			const newItemList = items.filter(item =>{
 				return item.id !== id; 
 			});
-			this.setState({items:newItemList});
+			setItems(newItemList)
+			setCount(count - 1)
 		};
 
-	onClickAdd = value => this.setState(state => ({
-		items: [
-			...state.items,
-			{
-				value: value.toLowerCase(),
-				isDone: false,
-				id: state.count + 1
-			}
-		],
-		count: state.count + 1
-	}));
+	const onClickAdd = value => {
+		setItems(
+			[...items,
+				{
+					value: value.toLowerCase(),
+					isDone: false,
+					id: count + 1
+				}]);
+		setCount(count + 1) 
+	}
 
-	onClickDeleteDone = id => {
-		const newItemList = this.state.items.filter(item =>{
+	const onClickDeleteDone = id => {
+		const newItemList = items.filter(item =>{
 			return item.isDone !== true; 
-		} );
-		this.setState({items:newItemList});
+		});
+		setItems(newItemList);
 	};
 
-	render() {
 		return (
 			<div className={styles.wrap}>
 				<h1 className={styles.title}>Важные дела:</h1>
-				<InputItem onClickAdd={this.onClickAdd} />
+				<InputItem onClickAdd={onClickAdd} />
 				<ItemList 
-					items={this.state.items} 
-					onClickDone={this.onClickDone}  
-					onClickDelete={this.onClickDelete} />
-					<Footer count={this.state.items.length}
-					onClickDeleteDone={this.onClickDeleteDone}
+					items={items} 
+					onClickDone={onClickDone}  
+					onClickDelete={onClickDelete} />
+					<Footer count={items.length}
+					onClickDeleteDone={onClickDeleteDone}
 				/>
 			</div>);
-		}
-};
+}
 
 export default App;
