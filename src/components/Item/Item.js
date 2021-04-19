@@ -19,7 +19,7 @@ class Item extends React.Component {
 	}
 
 	render() {
-	const { value, isDone, onClickDone, id, onClickDelete, onDoubleClick } = this.props;
+	const { value, isDone, onClickDone, id, onClickDelete } = this.props;
 
 		return (	<span className={
 		classnames({
